@@ -14,9 +14,9 @@ void printDebugInfo(const std::pair<Iter, bool>& insert_info)
 }
 
 template <typename Iter>
-void printDebugInfo(const Iter& find_info)
+void printDebugInfo(const Iter& find_info, const Iter& end)
 {
-	std::cout << (find_info ? "Znaleziono " + *find_info : "Nie znaleziono ;/")
+	std::cout << ((find_info != end) ? "Znaleziono " + *find_info : "Nie znaleziono ;/")
 			  << std::endl;
 }
 
@@ -59,9 +59,9 @@ int main()
 	}
 	auto it = m.find(10);
 	*it = "10 (poprawione)";
-	printDebugInfo(m.find(5));
+	printDebugInfo(m.find(5), m.end());
 	m.remove(4);
-	printDebugInfo(m.find(5));
+	printDebugInfo(m.find(5), m.end());
 	m.remove(12);
 	m.remove(14);
 	printDebugInfo(m.insert({0, "zero"}));
