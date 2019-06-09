@@ -334,18 +334,32 @@ typename BinaryTree<T>::Iterator BinaryTree<T>::remove(const T& x)
 	if (!tmp)
 		return end();
 
-	if (tmp->rightChild()) {
-		// we have both children or only right
+	if (tmp->leftChild() && tmp->rightChild()) {
+		// we have both children
 		auto val = tmp->next()->value();
 		remove(val);
 		tmp->m_value = val;
 		return tmp;
-	} else if (tmp->leftChild()) {
-		// has only left child
-		auto val = tmp->previous()->value();
-		remove(val);
-		tmp->m_value = val;
+	} else if (auto toDelete = tmp->rightChild()) {
+		// has only right child
+		// thread that was pointing at us
+		tmp->next()->m_leftChild = tmp->m_leftChild;
+		// swap and delete
+		using std::swap; // not needed here?
+		swap(*tmp, *toDelete);
+		delete toDelete;
+
 		return tmp;
+	} else if (auto toDelete = tmp->leftChild()) {
+		// has only left child
+		// thread that was pointing at us
+		tmp->previous()->m_rightChild = tmp->m_rightChild;
+		// swap and delete
+		using std::swap; // not needed here?
+		swap(*tmp, *toDelete);
+		delete toDelete;
+
+		return tmp->next();
 	} else {
 		// deleting leaf node
 		if (tmp->previous() && tmp->previous()->rightChild() == tmp) {
