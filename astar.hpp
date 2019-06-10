@@ -1,7 +1,7 @@
 #ifndef ASTAR_HPP
 #define ASTAR_HPP
 
-#include "graph.hpp"
+#include "Graph.hpp"
 #include <cstdint>
 #include <functional>
 #include <utility>
@@ -26,7 +26,7 @@ std::pair<double, std::vector<std::size_t>> astar(
 		std::size_t end_vertex_id)> heuristics,
 	std::function<double(const E&)> getEdgeLength)
 {
-	// ...
+	return graph.a_star(start_idx, end_idx, getEdgeLength, heuristics);
 }
 
 #endif // ASTAR_HPP

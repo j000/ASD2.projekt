@@ -1,5 +1,5 @@
 #include "dijkstra.hpp"
-#include "graph.hpp"
+#include "Graph.hpp"
 #include <functional>
 #include <iostream>
 

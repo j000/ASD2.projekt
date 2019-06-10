@@ -1,7 +1,7 @@
 #ifndef DIJKSTRA_HPP
 #define DIJKSTRA_HPP
 
-#include "graph.hpp"
+#include "Graph.hpp"
 #include <cstdint>
 #include <functional>
 #include <utility>
@@ -21,7 +21,7 @@ std::pair<double, std::vector<std::size_t>> dijkstra(
 	std::size_t end_idx,
 	std::function<double(const E&)> getEdgeLength)
 {
-	// ...
+	return graph.dijkstra(start_idx, end_idx, getEdgeLength);
 }
 
 #endif // DIJKSTRA_HPP

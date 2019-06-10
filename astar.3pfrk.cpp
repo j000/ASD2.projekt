@@ -1,6 +1,6 @@
 #include "astar.hpp"
 #include "dijkstra.hpp"
-#include "graph.hpp"
+#include "Graph.hpp"
 #include <cmath>
 #include <cstdint>
 #include <functional>
